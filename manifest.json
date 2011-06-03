@@ -1,0 +1,24 @@
+{
+  "name": "Wompt Chat",
+  "version": "0.1",
+  "description": "Embedds wompt chat rooms and links on various hacker news pages",
+  "icons": {
+		"32":  "wompt_32.png",
+		"48":  "wompt_48.png",
+		"128": "wompt_128.png"
+	},
+  "content_scripts": [{
+    "matches": [
+			"http://news.ycombinator.com/",
+			"http://news.ycombinator.com/news",
+			"http://news.ycombinator.com/newest",
+			"http://news.ycombinator.com/newcomments",
+			"http://news.ycombinator.com/ask",
+			"http://news.ycombinator.com/x*",
+			"http://news.ycombinator.com/item*"],
+    "js": ["hacker_news_links_and_iframes.js"]
+  }],
+  "permissions": [
+    "http://news.ycombinator.com/"
+  ]
+}

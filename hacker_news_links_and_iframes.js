@@ -84,8 +84,8 @@ function createWomptFrame(room_name){
 	var frame = document.createElement('iframe');
 	frame.setAttribute('src', urlPrefix + (room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString()))) + "?iframe=1#c=444");
 	frame.setAttribute('height', '600px');
-	frame.setAttribute('width', '100%');
-	frame.setAttribute('style', 'border:none;')
+	frame.setAttribute('width', '95%');
+	frame.setAttribute('style', 'border:none; display:block; margin:0 auto;')
 	return frame;
 }
 
