@@ -46,8 +46,9 @@ function addLinkToEntry(entry){
 function getRoomNameFromCommentsLink(link){
 	var href = link && link.getAttribute('href')
 	if(href){
-		var matches = href.match(/reddit\.com\/r\/(.*)$/);
-		return matches && matches[1];
+		var matches = href.match(/reddit\.com\/r\/(.*)$/),
+		url_part = matches && matches[1];
+		return url_part && url_part.replace(/comments\//,'');
 	}
 }
 
