@@ -1,22 +1,8 @@
-// ==UserScript== 
-// @name           Hacker News + Wompt Chat
-// @namespace      wompt
-// @include        http://news.ycombinator.com/
-// @include        http://news.ycombinator.com/news
-// @include        http://news.ycombinator.com/newest
-// @include        http://news.ycombinator.com/newcomments
-// @include        http://news.ycombinator.com/ask
-// @include        http://news.ycombinator.com/x*
-// @include        http://news.ycombinator.com/item*
-// ==/UserScript==
-
-var urlPrefix = 'http://wompt.com/chat/';
-
 function addWomptLink(td){
 	var l = document.createElement('a');
 
 	l.appendChild(document.createTextNode('(chat)'));
-	l.setAttribute('href',urlPrefix + 'hackernews/' + getArticleId(td));
+	l.setAttribute('href',wompt.settings.urlPrefix + 'hackernews/' + getArticleId(td));
 	td.appendChild(document.createTextNode(' | '));
 	td.appendChild(l);
 }
@@ -81,16 +67,10 @@ function AddWomptFrameAboveNewComments(){
 }
 
 function createWomptFrame(room_name){
-	var frame = document.createElement('iframe');
-	frame.setAttribute('src', urlPrefix + (room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString()))) + "?iframe=1#c=444");
-	frame.setAttribute('height', '600px');
-	frame.setAttribute('width', '95%');
-	frame.setAttribute('style', 'border:none; display:block; margin:0 auto;')
-	return frame;
+	return wompt.embed.iframe(room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString())));
 }
 
-if(!window._wompt_loaded){
-	window._wompt_loaded = true;
+if(wompt.util.once('hacker_news')){
 	if(window.location.href.indexOf('newcomments')>=0)
 		AddWomptFrameAboveNewComments();
 	else

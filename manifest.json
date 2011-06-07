@@ -1,14 +1,14 @@
 {
-  "name": "Wompt Chat",
-  "version": "0.1",
-  "description": "Wompt brings chat to all your favorite sites.",
-  "icons": {
+	"name": "Wompt Chat",
+	"version": "0.1",
+	"description": "Wompt brings chat to all your favorite sites.",
+	"icons": {
 		"32":  "wompt_32.png",
 		"48":  "wompt_48.png",
 		"128": "wompt_128.png"
 	},
-  "content_scripts": [{
-    "matches": [
+	"content_scripts": [{
+		"matches": [
 			"http://news.ycombinator.com/",
 			"http://news.ycombinator.com/news",
 			"http://news.ycombinator.com/newest",
@@ -16,9 +16,14 @@
 			"http://news.ycombinator.com/ask",
 			"http://news.ycombinator.com/x*",
 			"http://news.ycombinator.com/item*"],
-    "js": ["hacker_news_links_and_iframes.js"]
-  }],
-  "permissions": [
-    "http://news.ycombinator.com/"
-  ]
+		"js": [
+			"wompt.js",
+			"common/util.js",
+			"common/embed.js",
+			"hacker_news_links_and_iframes.js"
+		]
+	}],
+	"permissions": [
+		"http://news.ycombinator.com/"
+	]
 }
