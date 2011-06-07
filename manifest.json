@@ -22,8 +22,18 @@
 			"common/create.js",
 			"hacker_news/links_and_iframes.js"
 		]
+	},{
+		"matches": [
+			"http://www.reddit.com/"],
+		"js": [
+			"wompt.js",
+			"common/util.js",
+			"common/create.js",
+			"reddit/links.js"
+		]
 	}],
 	"permissions": [
-		"http://news.ycombinator.com/"
+		"http://news.ycombinator.com/",
+		"http://www.reddit.com/"
 	]
 }
