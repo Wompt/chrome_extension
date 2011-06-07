@@ -1,6 +1,19 @@
 function eachEntry(callback){
-	entries = document.getElementsByClassName('entry');
-	Array.prototype.forEach.call(entries, callback)
+	var each = Array.prototype.forEach,
+	list_css_classes = ['sitetable', 'organic-listing'];
+	
+	list_css_classes.forEach(function(css_class){
+		eachEntryInLists(document.getElementsByClassName(css_class))
+	});
+	
+	function eachEntryInLists(lists){
+		each.call(lists, eachEntryInList)
+	}
+	
+	function eachEntryInList(list){
+		var entries = list.getElementsByClassName('entry');
+		each.call(entries, callback)
+	}
 }
 
 function addLinks(){
@@ -12,24 +25,26 @@ function addLinkToEntry(entry){
 	if(buttons.length > 0){
 		// button bar
 		var bar = buttons[0],
-		// children
-		items = bar.getElementsByTagName('li'),
+		// comments link
+		comments = bar.getElementsByClassName('comments')[0],
 		// new li and link to wompt
 		li = document.createElement('li');
 		
-		li.appendChild(
-			wompt.create.link(
-				'reddit/' + getRoomNameFromCommentsLink(items[0]),
-				'chat',
-				'comments'));
-		// insert chat link right after "comments" link
-		bar.insertBefore(li, items[1]);
+		if(comments){
+			li.appendChild(
+				wompt.create.link(
+					'reddit/' + getRoomNameFromCommentsLink(comments),
+					'chat',
+					'comments'));
+			// insert chat link right after "comments" link
+			var comments_li = comments.parentNode;			
+			bar.insertBefore(li, comments_li.nextSibling);
+		}
 	}
 }
 
-function getRoomNameFromCommentsLink(comments){
-	var a = comments.getElementsByTagName('a')[0],
-	href = a && a.getAttribute('href')
+function getRoomNameFromCommentsLink(link){
+	var href = link && link.getAttribute('href')
 	if(href){
 		var matches = href.match(/reddit\.com\/r\/(.*)$/);
 		return matches && matches[1];
