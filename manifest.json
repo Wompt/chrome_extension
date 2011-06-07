@@ -19,7 +19,7 @@
 		"js": [
 			"wompt.js",
 			"common/util.js",
-			"common/embed.js",
+			"common/create.js",
 			"hacker_news/links_and_iframes.js"
 		]
 	}],
