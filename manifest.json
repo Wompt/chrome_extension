@@ -20,7 +20,7 @@
 			"wompt.js",
 			"common/util.js",
 			"common/embed.js",
-			"hacker_news_links_and_iframes.js"
+			"hacker_news/links_and_iframes.js"
 		]
 	}],
 	"permissions": [
