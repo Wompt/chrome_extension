@@ -1,9 +1,13 @@
 wompt.util = {
-	createElement: function(tag, attributes){
+	createElement: function(tag, attributes, innerText){
 		var el = document.createElement(tag);
 		for(var key in attributes){
 			el.setAttribute(key, attributes[key])
 		}
+		
+		if(innerText)
+			el.appendChild(document.createTextNode(innerText));
+
 		return el;
 	},
 	
