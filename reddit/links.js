@@ -45,13 +45,35 @@ function addLinkToEntry(entry){
 
 function getRoomNameFromCommentsLink(link){
 	var href = link && link.getAttribute('href')
-	if(href){
-		var matches = href.match(/reddit\.com\/r\/(.*)$/),
-		url_part = matches && matches[1];
-		return url_part && url_part.replace(/comments\//,'');
+	if(href)
+		return getRoomNameFromCommentsUrl(href);
+}
+
+function getRoomNameFromCommentsUrl(url){
+	var matches = url.match(/reddit\.com\/r\/(.*)$/),
+	url_part = matches && matches[1];
+	if(!url_part) return;
+	return url_part.replace(/comments\//,'').replace(/\/$/,'');
+}
+
+function addIFrame(){
+	var href = window.location.href;
+	
+	if(href.indexOf('/comments/') >=0){
+		var comment_area = document.getElementsByClassName('commentarea')[0],
+		comments_section = comment_area && comment_area.getElementsByClassName('sitetable nestedlisting')[0];
+		if(comments_section){
+			var iframe = wompt.create.iframe('reddit/' + getRoomNameFromCommentsUrl(href));
+			wompt.util.applyAttributes(iframe, {
+				width: '550px',
+				style: 'display:block; border:none; margin:0;'
+			});
+			comments_section.insertBefore(iframe, comments_section.childNodes[0])
+		}
 	}
 }
 
 if(wompt.util.once('reddit-links')){
 	addLinks();
+	addIFrame();
 }
