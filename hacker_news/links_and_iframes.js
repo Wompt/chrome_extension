@@ -67,7 +67,7 @@ function AddWomptFrameAboveNewComments(){
 }
 
 function createWomptFrame(room_name){
-	return wompt.embed.iframe(room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString())));
+	return wompt.create.iframe(room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString())));
 }
 
 if(wompt.util.once('hacker_news')){
