@@ -1,7 +1,7 @@
 {
   "name": "Wompt Chat",
   "version": "0.1",
-  "description": "Embedds wompt chat rooms and links on various hacker news pages",
+  "description": "Wompt brings chat to all your favorite sites.",
   "icons": {
 		"32":  "wompt_32.png",
 		"48":  "wompt_48.png",
