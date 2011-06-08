@@ -1,6 +1,6 @@
 {
 	"name": "Wompt Chat",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Wompt brings chat to all your favorite sites.",
 	"icons": {
 		"32":  "wompt_32.png",
@@ -34,9 +34,19 @@
 			"common/create.js",
 			"reddit/links_and_iframes.js"
 		]
+	},{
+		"matches": [
+			"https://github.com/*"],
+		"js": [
+			"wompt.js",
+			"common/util.js",
+			"common/create.js",
+			"github/links_and_iframes.js"
+		]
 	}],
 	"permissions": [
 		"http://news.ycombinator.com/",
-		"http://www.reddit.com/"
+		"http://www.reddit.com/",
+		"https://github.com/"
 	]
 }
