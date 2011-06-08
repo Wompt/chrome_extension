@@ -5,7 +5,7 @@ function addIFrame(){
 	if(repo_head && repo_head.className.indexOf('shortdetails') < 0){
 		
 		var container = wompt.util.createElement('div', {style:'margin:.1em 0 .6em 0;'});
-		var iframe = wompt.create.iframe('github' + window.location.pathname);
+		var iframe = wompt.create.iframe('github' + getRoomNameFromUrl(window.location.pathname));
 		
 		wompt.util.applyAttributes(iframe, {
 			width: '100%',
@@ -17,6 +17,10 @@ function addIFrame(){
 		container.appendChild(iframe);
 		repo_head.parentNode.insertBefore(container, repo_head.nextSibling)
 	}
+}
+
+function getRoomNameFromUrl(path){
+	return path.split('/').slice(0,3).join('/');
 }
 
 function collapsedState(state){
