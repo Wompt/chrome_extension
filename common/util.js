@@ -21,5 +21,9 @@ wompt.util = {
 		var seen_yet = window._wompt_once[key];
 		window._wompt_once[key] = true;
 		return !seen_yet;
+	},
+	
+	hasClass: function(el, _class){
+		return el.className.indexOf(_class) >= 0
 	}
 }

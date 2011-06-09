@@ -1,11 +1,14 @@
 function addIFrame(){
 	var repo_head = document.getElementsByClassName('repohead')[0];
-	// make sure we only add the iframe on the main project page
-	// on all other pages, the repo_head div has a 'shortdetails' class
-	if(repo_head && repo_head.className.indexOf('shortdetails') < 0){
+	// make sure we only add the iframe on the main project page for public
+	// project. On all other pages, the repo_head div has a 'shortdetails' or
+	// 'vis-private' CSS class
+	if(repo_head
+		 && !wompt.util.hasClass(repo_head,'shortdetails')
+		 && !wompt.util.hasClass(repo_head,'vis-private')){
 		
 		var container = wompt.util.createElement('div', {style:'margin:.1em 0 .6em 0;'});
-		var iframe = wompt.create.iframe('github' + getRoomNameFromUrl(window.location.pathname));
+		iframe = wompt.create.iframe('github' + getRoomNameFromUrl(window.location.pathname));
 		
 		wompt.util.applyAttributes(iframe, {
 			width: '100%',
