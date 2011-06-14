@@ -1,4 +1,7 @@
+var iframe;
 function addIFrame(){
+	if(iframe) return;
+	
 	var repo_head = document.getElementsByClassName('repohead')[0];
 	// make sure we only add the iframe on the main project page for public
 	// project. On all other pages, the repo_head div has a 'shortdetails' or
