@@ -15,8 +15,7 @@ function addIFrame(){
 		
 		wompt.util.applyAttributes(iframe, {
 			width: '100%',
-			height: collapsedState() ? '0' : '300px',
-			style: 'display:block; border:none; -webkit-transition:height .7s ease-in-out;'
+			style: 'display:block; border:none;'
 		});
 		
 		container.appendChild(createToggleLink(iframe, collapsedState()));
