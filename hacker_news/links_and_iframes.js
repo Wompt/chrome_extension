@@ -54,18 +54,26 @@ function AddWomptFrameAboveComments(){
 	}
 }
 
-function AddWomptFrameAboveNewComments(){
+function AddWomptFrameBelowHeader(){
 	var outer_table = document.getElementsByTagName('table')[0],
 	row =     outer_table && outer_table.getElementsByTagName('tr')[0],
-	nextrow = row         && getNext(row,'TR');
+	nextrow = row         && getNext(row,'TR', 1);
 	if(nextrow){
-		var iframe = createWomptFrame('hackernews');
+		iframe = createWomptFrame('hackernews');
 		if(!iframe) return;
 		
-		var td = document.createElement('td');
-		td.setAttribute('style', 'padding:15px 0;');
+		var newrow = wompt.util.createElement('tr'),
+		td = wompt.util.createElement('td'),
+		toggle = wompt.create.toggleLink(iframe, 'hackernews_main');
+
+		toggle.style.margin = ".5em";
+		toggle.style.lineHeight = "2em";
+		iframe.style.marginBottom = "1em";
+		
+		newrow.appendChild(td);
+		td.appendChild(toggle);
 		td.appendChild(iframe);
-		nextrow.appendChild(td);
+		nextrow.parentNode.insertBefore(newrow, nextrow);
 	}
 }
 
@@ -76,9 +84,7 @@ function createWomptFrame(room_name){
 }
 
 if(wompt.util.once('hacker_news')){
-	if(window.location.href.indexOf('newcomments')>=0)
-		AddWomptFrameAboveNewComments();
-	else
-		AddWomptFrameAboveComments();
+	AddWomptFrameAboveComments();
+	AddWomptFrameBelowHeader();
 	AddLinksToChatRooms();
 }
