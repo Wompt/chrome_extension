@@ -15,5 +15,34 @@ wompt.create = {
 			href: wompt.settings.urlPrefix +	room_name,
 			'class': classes
 		}, text || room_name)
+	},
+	
+	toggleLink: function(container_to_toggle, stateName){
+		var collapsed = wompt.util.boolState(stateName);
+		var a = wompt.util.createElement('a', {
+			'href':'#',
+			'class': 'breadcrumb',
+			'style': 'font-weight: bold;'
+		}, toggleText());
+		
+		function toggleText(){
+			return collapsed ? "expand chat +" : "close chat -";
+		}
+		
+		function setContainerHeight(){
+			container_to_toggle.setAttribute('height', collapsed ? '0' : '300px');
+		}
+		
+		setContainerHeight();
+		container_to_toggle.style['-webkit-transition'] = "height .7s ease-in-out";
+		
+		a.addEventListener('click', function(e){
+			collapsed = !collapsed;
+			setContainerHeight();
+			this.innerText = toggleText();
+			e.preventDefault();
+			wompt.util.boolState(stateName, collapsed);
+		});
+		return a;
 	}
 }
