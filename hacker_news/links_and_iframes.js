@@ -59,15 +59,20 @@ function AddWomptFrameAboveNewComments(){
 	row =     outer_table && outer_table.getElementsByTagName('tr')[0],
 	nextrow = row         && getNext(row,'TR');
 	if(nextrow){
+		var iframe = createWomptFrame('hackernews');
+		if(!iframe) return;
+		
 		var td = document.createElement('td');
 		td.setAttribute('style', 'padding:15px 0;');
-		td.appendChild(createWomptFrame('hackernews'));
+		td.appendChild(iframe);
 		nextrow.appendChild(td);
 	}
 }
 
+var iframe;
 function createWomptFrame(room_name){
-	return wompt.create.iframe(room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString())));
+	if(iframe) return null;
+	return iframe = wompt.create.iframe(room_name || ('hackernews/' + getArticleIdFromUrl(window.location.toString())));
 }
 
 if(wompt.util.once('hacker_news')){
