@@ -27,8 +27,7 @@ function getRoomNameFromUrl(path){
 }
 
 function collapsedState(state){
-	if(state == null) return localStorage['github_collapsed'] == 'true'
-	return localStorage['github_collapsed'] = state;
+	return wompt.util.boolState('github_collapsed', state)
 }
 
 function createToggleLink(iframe_to_toggle, collapsed){

@@ -25,5 +25,11 @@ wompt.util = {
 	
 	hasClass: function(el, _class){
 		return el.className.indexOf(_class) >= 0
+	},
+	
+	
+	boolState: function(key, state){
+		if(state == null) return localStorage[key] == 'true'
+		return localStorage[key] = state;
 	}
 }
