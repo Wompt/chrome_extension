@@ -1,6 +1,6 @@
 {
 	"name": "Wompt Chat",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Wompt brings chat to all your favorite sites.",
 	"icons": {
 		"16":  "wompt_16.png",
